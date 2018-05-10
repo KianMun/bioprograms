@@ -1,0 +1,58 @@
+#Computing GC content using FASTA files
+
+##### File editing start #####
+import re
+
+fhandle = open(r"C:\Users\kianmun.SWISING\Desktop\rosalind_gc.txt")
+file = fhandle.read().splitlines()
+#splitlines() reads the file and splits at newline '\n' BUT requires to .read() the file first
+#readlines() readst the file and splits the file BUT with '\n' at end of each line
+
+fastadict = {}
+
+
+
+fastaedit1 = "".join(file)
+#to remove the \n that was in between the sequences(i.e tab)
+dna_sequence = re.split(r'>Rosalind_[0-9]{4}', fastaedit1)
+#to get individual item sequence
+dna_sequence_edit = dna_sequence.remove('')
+#to remove the '' when using split()
+fastaedit3 = re.split(r'[ATGC+]', fastaedit1)
+#to get individual item FASTA name
+fasta_name = [x for x in fastaedit3 if x]
+#[x for x in fastaedit3 if x] removes null, empty strings in list
+
+fastadict = dict(zip(fasta_name,dna_sequence))
+#dict(zip(key, value)) combines 2 list into dictionary
+
+##### File editing done #####
+
+##### GC content count, and finding the max() #####
+
+gc_count_lst = []
+#create list to contain gc count for each item in dict
+
+for k,v in fastadict.items():
+#for k,v in fastadict.items() is to iterate through a dicitionary
+    gcount = fastadict[k].count('G')
+    ccount = fastadict[k].count('C')
+    gc_count = (gcount + ccount)
+    gc_count_lst.append(gc_count)
+#appending count of each item into gc_count_lst
+
+fastacount_dict = dict(zip(fasta_name,gc_count_lst))
+#dict(zip(key, value)) combines 2 list into dictionary
+
+for k,v in fastacount_dict.items():
+    fasta_max = max(fastacount_dict.values())
+    if v == fasta_max:
+        rosname = k
+#to get fasta name(key) with the max(value)
+print(rosname)
+high_gc_seq =fastadict.get(rosname)
+#to get sequence of the highest GC content
+
+high_gc_percentage = (fasta_max/len(high_gc_seq))*100
+#to calculate gc percentage
+print(high_gc_percentage)
