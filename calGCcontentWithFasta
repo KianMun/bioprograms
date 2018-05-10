@@ -1,4 +1,5 @@
 #Computing GC content using FASTA files
+#Created by Kian Mun on 10/05/2018
 
 ##### File editing start #####
 import re
