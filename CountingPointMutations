@@ -7,11 +7,11 @@ file = fhandle.read().splitlines()
 
 seq1 = file[0]
 seq2 = file[1]
-
+mismatch =[]
 def sequence_compare(sequence_a, sequence_b):
     len_a = len(sequence_a)
     len_b = len(sequence_b)
-    mismatch = []
+#    mismatch = []
     for pos in range(0,max(len_a, len_b)):
 #comparing position by position a[pos] vs b[pos]
         if sequence_a[pos] != sequence_b[pos]:
@@ -21,3 +21,8 @@ def sequence_compare(sequence_a, sequence_b):
     return sum(mismatch)
 
 print('Hamming distance is: ', (sequence_compare(seq1,seq2)))
+
+print(mismatch)
+
+#printing the mismatch positions
+print('Mismatch positions are:', '\n', [i for i, x in enumerate(mismatch) if x == 1])
