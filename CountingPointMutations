@@ -22,7 +22,5 @@ def sequence_compare(sequence_a, sequence_b):
 
 print('Hamming distance is: ', (sequence_compare(seq1,seq2)))
 
-print(mismatch)
-
 #printing the mismatch positions
 print('Mismatch positions are:', '\n', [i for i, x in enumerate(mismatch) if x == 1])
