@@ -1,0 +1,20 @@
+#Given: Three positive integers k, m, and n, representing a population containing k+m+n organisms:
+# k individuals are homozygous dominant for a factor, m are heterozygous, and n are homozygous recessive.
+#Return: The probability that two randomly selected mating organisms will produce an individual possessing a
+# dominant allele (and thus displaying the dominant phenotype). Assume that any two organisms can mate.
+
+
+def mendelian_inheritance(k,m,n):
+    total_popn = k + m + n
+
+#different pair permuations probabilities of recessive offspring 
+    nn = n/total_popn * (n-1)/(total_popn - 1)
+    nm = n/total_popn * m/(total_popn - 1) * 0.5
+    mn = m/total_popn * n/(total_popn - 1) * 0.5
+    mm = m/total_popn * (m-1)/(total_popn - 1) * 0.25
+
+#Calculation of probability of dominant offspring by subtracting the recessive offspring probability    
+    dominant_probability = 1 - (nn + nm + mm + mn)
+    return dominant_probability
+
+print(mendelian_inheritance(27,29,23))
