@@ -1,0 +1,37 @@
+#RNA codon to Amino Acid
+
+#RNA Codon to amino acid dictionary
+RNA_Codon_To_AA = {'UUU': 'F ', 'CUU': 'L', 'AUU': 'I', 'GUU': 'V',
+                   'UUC': 'F ', 'CUC': 'L', 'AUC': 'I', 'GUC': 'V',
+                   'UUA': 'L', 'CUA': 'L', 'AUA': 'I', 'GUA': 'V',
+                   'UUG': 'L', 'CUG': 'L', 'AUG': 'M', 'GUG': 'V',
+                   'UCU': 'S', 'CCU': 'P', 'ACU': 'T', 'GCU': 'A',
+                   'UCC': 'S', 'CCC': 'P', 'ACC': 'T', 'GCC': 'A',
+                   'UCA': 'S', 'CCA': 'P', 'ACA': 'T', 'GCA': 'A',
+                   'UCG': 'S', 'CCG': 'P', 'ACG': 'T', 'GCG': 'A',
+                   'UAU': 'Y', 'CAU': 'H', 'AAU': 'N', 'GAU': 'D',
+                   'UAC': 'Y', 'CAC': 'H', 'AAC': 'N', 'GAC': 'D',
+                   'UAA': 'Stop', 'CAA': 'Q', 'AAA': 'K', 'GAA': 'E',
+                   'UAG': 'Stop', 'CAG': 'Q', 'AAG': 'K', 'GAG': 'E',
+                   'UGU': 'C', 'CGU': 'R', 'AGU': 'S', 'GGU': 'G',
+                   'UGC': 'C', 'CGC': 'R', 'AGC': 'S', 'GGC': 'G',
+                   'UGA': 'Stop', 'CGA': 'R', 'AGA': 'R', 'GGA': 'G',
+                   'UGG': 'W', 'CGG': 'R', 'AGG': 'R', 'GGG': 'G' }
+
+#function to translate RNA codons to Amino acid
+def rna_translate(rna):
+    protein = []
+    #iterating from start at 0 to end of length of sequence -2 at 3 items per iteration
+    for start in range(0,len(rna)-2,3):
+    #Adding each 3 items per iteration to 'codon' for search in RNA to codon dictionary
+        codon = rna[start:start+3]
+    #Getting the amino acid from the dictionary if there is a match
+        amino_acid = RNA_Codon_To_AA.get(codon)
+    #Adding that match to the protein list
+        protein.append(amino_acid)
+    return protein
+
+protein_seq = rna_translate('')
+
+#prinitng out the protein sequence by removing the "," using ''.join()
+print(''.join(protein_seq))
