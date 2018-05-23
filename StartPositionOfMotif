@@ -1,0 +1,27 @@
+#Finding the start positions of every motif
+
+fhandle = open(r"C:\Users\kianmun.SWISING\Desktop\dna.txt")
+file =fhandle.read().split()
+
+#converts seq into list, seq as 1 item and motif as 2nd item, as they are separated by tabs
+dna = list(file)
+
+#Removing '\n' from the list by not adding '\n' into list
+#dna = [x for x in file if x != '\n']
+
+seq = dna[0]
+motif = dna[1]
+
+def motif_positions(seq, motif):
+    position = []
+    for i in range(len(seq) - len(motif)+1):
+        if seq[i:i+len(motif)] == motif:
+            position.append(i+1) #python base 0
+    return position
+
+motif_pos = motif_positions(seq,motif)
+
+#map(function, iterable), i.e. applying a function over an object, i.e list
+#Below is to make the motif pos into a str so that you can .join a blank space' ' and remove the commas
+
+print(' '.join(map(str,motif_pos)))
