@@ -7,6 +7,9 @@ def generate_kmers(length):
                 new_result.append(kmer + base)
         result = new_result
     return result
+
+###########################################################################################################################################
+
 #Using recursion
 def generate_kmers_recursion(length):
     if length == 1:
