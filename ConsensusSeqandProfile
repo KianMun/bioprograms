@@ -1,0 +1,50 @@
+#Given: A collection of at most 10 DNA strings of equal length (at most 1 kbp) in FASTA format.
+
+#Return: A consensus string and profile matrix for the collection. 
+#(If several possible consensus strings exist, then you may return any one of them.)
+
+#Sample Output
+#A: 5 1 0 0 5 5 0 0
+#C: 0 0 1 4 2 0 6 1
+#G: 1 1 6 3 0 1 0 0
+#T: 1 5 0 0 0 1 1 6
+
+fhandle = open(r"C:\Users\kianmun80\Desktop\rosalind.txt")
+
+#To remove all the '\n'
+file = fhandle.read().split('\n')
+
+#To join the whole seq as string to be split at'Rosalind_\d{4}'
+filejoin = ''.join(file)
+
+import re
+
+#Spliting and removing the 'Rosalind_\d{4}(any 4 digits)' from the sequence
+filesplit = re.split(r'>Rosalind_\d{4}',filejoin)
+
+#Removes the '' in the first item in filesplit
+#Start at second item, keep the second item, i.e spliting/removing the first item ''
+seq = filesplit[1::1]
+
+#Generating a matrix to count and store the frequency of each nucleotide in each position
+matrix =[]
+for x in range(len(seq[0])):
+    count = {'A':0, 'C':0, 'G':0, 'T':0}
+    for sequence in seq:
+        count[sequence[x]] +=1
+    matrix.append(count)
+
+#Generating a consensus sequence by taking the highest frequency of each letter in each position
+import operator
+consensus = ''.join(max(col.items(), key=operator.itemgetter(1))[0] for col in matrix)
+print(consensus)
+
+#Putting the matrix into a transposed dataframe using pandas
+import pandas as pd
+
+df_consensus = pd.DataFrame(matrix)
+df = df_consensus.transpose()
+
+#renaming the row names
+profile = df.rename(index={'A':'A:','C':'C:','G':'G:','T':'T:'})
+print(profile.to_string(header=False))
