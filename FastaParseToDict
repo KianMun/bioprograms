@@ -5,8 +5,8 @@ import re
 def rosalind_file_parse(fhandle):
     file = fhandle.split('\n')
     filejoin = ''.join(file)
-    sequence_names = re.findall(r'>Rosalind_\d{4}',filejoin)
-    sequence = re.split(r'>Rosalind_\d{4}', filejoin)[1::1]
+    sequence_names = re.findall(r'>Rosalind_\d{1,9}',filejoin)
+    sequence = re.split(r'>Rosalind_\d{1,9}', filejoin)[1::1]
     sequence_dictionary = dict(zip(sequence_names, sequence))
     return sequence_dictionary
 
