@@ -1,6 +1,8 @@
 dna = 'aattggaattggaattg'
 k = 4
 kmer2list = {}
+
+#Getting start positions of kmers of given length
 for start in range(len(dna) -k+1):
     kmer = dna[start:start+k]
     list_of_positions = kmer2list.get(kmer,[])
@@ -8,3 +10,7 @@ for start in range(len(dna) -k+1):
     list_of_positions.append(start)
     kmer2list[kmer] = list_of_positions
 print(kmer2list)
+
+#Counting number of kmers of certain sequence from kmer2list
+counts = {kmer: len(starts) for kmer, starts in kmer2list.items()}
+print(counts)
