@@ -1,0 +1,10 @@
+dna = 'aattggaattggaattg'
+k = 4
+kmer2count = {}
+for start in range(len(dna) - k +1):
+    kmer = dna[start:start+k]
+    current_count = kmer2count.get(kmer,0)
+    #using a default value of zero if the kmer isn't
+    #already in the dict
+    kmer2count[kmer] = current_count + 1
+print(kmer2count)
