@@ -1,0 +1,94 @@
+class SequenceRecord:
+
+    def __init__(self, sequence, gene_name, species_name):
+        self.sequence = sequence
+        self.gene_name = gene_name
+        self.species_name = species_name
+
+    def get_fasta(self):
+        safe_species_name = self.species_name.replace(' ', '_')
+        header = '>' + self.gene_name + '\n' + self.sequence + '\n'
+        return header + '\n' + self.sequence + '\n'
+
+class DNARecord(SequenceRecord):
+
+    def complement(self):
+        replacement1 = self.sequence.replace('A', 't')
+        replacement2 = replacement1.replace('T','a')
+        replacement3 = replacement2.replace('C', 'g')
+        replacement4 = replacement3.replace('G', 'c')
+        return replacement4
+
+    def get_AT(self):
+        length = len(self.sequence)
+        a_count = self.sequence.count('A')
+        t_count = self.sequence.count('T')
+        at_content = (a_count + t_count)/ length
+        return at_content
+
+    def translate_dna(self,sequencep):
+        gencode = {
+            'ATA': 'I', 'ATC': 'I', 'ATT': 'I', 'ATG': 'M',
+            'ACA': 'T', 'ACC': 'T', 'ACG': 'T', 'ACT': 'T',
+            'AAC': 'N', 'AAT': 'N', 'AAA': 'K', 'AAG': 'K',
+            'AGC': 'S', 'AGT': 'S', 'AGA': 'R', 'AGG': 'R',
+            'CTA': 'L', 'CTC': 'L', 'CTG': 'L', 'CTT': 'L',
+            'CCA': 'P', 'CCC': 'P', 'CCG': 'P', 'CCT': 'P',
+            'CAC': 'H', 'CAT': 'H', 'CAA': 'Q', 'CAG': 'Q',
+            'CGA': 'R', 'CGC': 'R', 'CGG': 'R', 'CGT': 'R',
+            'GTA': 'V', 'GTC': 'V', 'GTG': 'V', 'GTT': 'V',
+            'GCA': 'A', 'GCC': 'A', 'GCG': 'A', 'GCT': 'A',
+            'GAC': 'D', 'GAT': 'D', 'GAA': 'E', 'GAG': 'E',
+            'GGA': 'G', 'GGC': 'G', 'GGG': 'G', 'GGT': 'G',
+            'TCA': 'S', 'TCC': 'S', 'TCG': 'S', 'TCT': 'S',
+            'TTC': 'F', 'TTT': 'F', 'TTA': 'L', 'TTG': 'L',
+            'TAC': 'Y', 'TAT': 'Y', 'TAA': '_', 'TAG': '_',
+            'TGC': 'C', 'TGT': 'C', 'TGA': '_', 'TGG': 'W'}
+
+        protein = ''
+        sequencep = self.sequence
+
+        for start in range(0, len(sequencep) - 2, 3):
+            codon = sequencep[start:start + 3]
+            aa = gencode.get(codon.upper(), 'X')
+            protein = protein + aa
+        return protein
+
+
+
+
+sequence1 = 'ACGTAGCTGACGATC'
+gene_name1 = 'ABC1'
+species_name1 = 'Drosophila melanogaster'
+
+d = DNARecord(sequence1, gene_name1, species_name1)
+
+print('Species name: ' + d.species_name)
+print('Complement: ' + d.complement())
+print('AT content: ' + str(d.get_AT()))
+print(d.translate_dna(sequence1))
+print(d.get_fasta())
+
+if d.get_AT() > 0.6:
+    print('Great')
+else:
+    print('Low GC')
+
+
+class ProteinRecord(SequenceRecord):
+
+    def get_hydrophobic(self):
+        aa_list = ['A', 'I', 'L', 'M', 'F', 'W', 'Y', 'V']
+        protein_length = len(self.sequence)
+        total =0
+        for aa in aa_list:
+            aa = aa.upper()
+            aa_count = self.sequence.count(aa)
+            total = total + aa_count
+        percentage = total *100 / protein_length
+        return percentage
+
+d1 = ProteinRecord('MSRSLLLRFLLFLLLLPPLP', 'COX1', 'Homo sapiens')
+
+print('Fasta: ' + d1.get_fasta())
+print('Hydrophobic percentage: ' + str(d1.get_hydrophobic()))
