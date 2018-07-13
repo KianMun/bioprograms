@@ -1,15 +1,15 @@
 # bioprograms
 
-#CalcProteinMass
-#Calculate Protein mass with Amino acid weight dictionary
+# CalcProteinMass
+Calculate Protein mass with Amino acid weight dictionary
 
-#CalculatingExpectedOffspring
-#Calculating Expected Offspring with Dominant Genotype
+# CalculatingExpectedOffspring
+Calculating Expected Offspring with Dominant Genotype
 
-#CodonToProtein
-#Translate codon to amino acid(AA) using Codon to AA dictionary
+# CodonToProtein
+Translate codon to amino acid(AA) using Codon to AA dictionary
 
-#ConsensusSeqandProfile
+# ConsensusSeqandProfile
 #Given: A collection of at most 10 DNA strings of equal length (at most 1 kbp) in FASTA format.
 #Return: A consensus string and profile matrix for the collection. 
 
