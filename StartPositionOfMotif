@@ -1,6 +1,6 @@
 #Finding the start positions of every motif
 
-fhandle = open(r"C:\Users\kianmun.SWISING\Desktop\dna.txt")
+fhandle = open(r"")
 file =fhandle.read().split()
 
 #converts seq into list, seq as 1 item and motif as 2nd item, as they are separated by tabs
