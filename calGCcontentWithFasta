@@ -4,7 +4,7 @@
 ##### File editing start #####
 import re
 
-fhandle = open(r"C:\Users\kianmun.SWISING\Desktop\rosalind_gc.txt")
+fhandle = open(r"")
 file = fhandle.read().splitlines()
 #splitlines() reads the file and splits at newline '\n' BUT requires to .read() the file first
 #readlines() readst the file and splits the file BUT with '\n' at end of each line
