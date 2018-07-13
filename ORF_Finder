@@ -1,0 +1,58 @@
+#Using BioPython to pasrse through fasta file to get sequences, name
+#Find ORFs in different reading frames =1, 2, 3 
+
+fhandle = open(r"")
+import Bio
+from Bio import SeqIO
+
+fasta = SeqIO.parse(fhandle,"fasta")
+rname = []
+seq = []
+for f in fasta:
+    name, sequences = f.id, str(f.seq)
+    rname.append(name)
+    seq.append(sequences)
+    rname_seq = dict(zip(rname,seq))
+
+print(rname_seq)
+print('Number of records:', '\n', len(rname_seq))
+
+seq_length = []
+for i in seq:
+    seq_length.append(len(i))
+    rname_seqlength = dict (zip(rname,seq_length))
+
+
+print('Max sequence length', '\n', max(rname_seqlength,key=rname_seqlength.get),': ',max(seq_length))
+print('Min sequence length', '\n', min(rname_seqlength,key=rname_seqlength.get),': ',min(seq_length))
+
+
+def orf_finder(sequence):
+    # Get ATG
+    start_index = []
+    stop_index = []
+    for i in range(0, len(sequence), 3): #range(0=first, 1 = 2nd, 2=3rd reading frame)
+        if sequence[i:i+3] == "ATG":
+            start_index.append(i)
+
+    # Find all stop codon
+    for i in range(0, len(sequence), 3): #range(0=first, 1 = 2nd, 2=3rd reading frame)
+        stops =["TAA", "TAG", "TGA"]
+        if sequence[i:i+3] in stops:
+            stop_index.append(i)
+
+    orf = []
+    mark = 0
+    for i in range(0,len(start_index)):
+        for j in range(0, len(stop_index)):
+            if start_index[i] < stop_index[j] and start_index[i] > mark:
+                orf.append(sequence[start_index[i]:stop_index[j]+3])
+                mark = stop_index[j]+3
+                break
+    return orf
+
+#Iterate over each sequence in seq
+orf = orf_finder(i) for i in seq]
+orf_lengths = [len(j) for i in orf for j in i]
+
+print(max(orf_lengths))
