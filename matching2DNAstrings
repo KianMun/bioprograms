@@ -1,0 +1,8 @@
+# To determine if 2 DNA strings are the EXACT match
+def match(s1,s2):
+    if not len(s1) == len(s2): #checks if length of 2 strings are equal
+        return False
+    for i in range(len(s1)):
+        if not s1[i] == s2[i]: #iterates and compares if each index's string is same
+            return False
+    return True
