@@ -59,3 +59,15 @@ Getting start positions of kmers of given length
 
 # calGCcontentWithFasta
 Computing GC content using FASTA files
+
+# generateRandomDNAString
+Generate Random DNA string
+
+# longestCommonPrefix
+Finding longest common prefix between 2 DNA strings
+
+# matching2DNAstrings
+To determine if 2 DNA strings are an exact match
+
+# reverseComplement
+Generate reverse complement from a DNA string
