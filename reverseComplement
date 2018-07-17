@@ -1,0 +1,7 @@
+#Generate reverse complement from a DNA string
+def reverseComplement(s):
+    complement = {'A': 'T', 'G': 'C', 'T': 'A', 'C': 'G'}
+    t=''
+    for base in s:
+        t = complement[base] + t #adding complement to the end of t not the usual't = t + complement[base]'
+    return t
