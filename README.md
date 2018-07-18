@@ -51,6 +51,9 @@ Sequence, DNA, Protein Record in OOP
 Using BioPython to pasrse through fasta file to get sequences, name
 Find ORFs in different reading frames =1, 2, 3 
 
+# PareseFastaAndCountNucleotides
+Parse fasta file to get the sequences. Counting nucleotides from the resulting sequences.
+
 # StartPositionOfMotif
 Finding the start positions of every motif
 
