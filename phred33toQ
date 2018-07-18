@@ -1,0 +1,4 @@
+#Convert phredd 33 ASCII values to Quality scores
+
+def phred33toQ(qual):
+    return ord(qual) - 33 #ord converts ASCII value to a number
