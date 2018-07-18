@@ -73,5 +73,8 @@ Finding longest common prefix between 2 DNA strings
 # matching2DNAstrings
 To determine if 2 DNA strings are an exact match
 
+# readFastq
+Read fastq files and get sequences and quality scores
+
 # reverseComplement
 Generate reverse complement from a DNA string
