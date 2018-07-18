@@ -1,0 +1,24 @@
+#Parese Fasta file to get Sequence and Count Nucleotides
+
+#Parse Fasta file to get Sequence
+def readGenome(filename):
+    genome = ''
+    with open(filename,'r') as f:
+        for line in f:
+            if not line[0] == '>':
+                genome += line.rstrip() 
+                #rstrip() remove any trailing whitespaces at the end of the string, trim off '\n', tabs, whitespaces and etc
+    return genome
+
+#Counting Nucleotide in Sequence
+ 
+nucleotideCount = {'A':0, 'T':0, 'G':0, 'C':0}
+ 
+for base in genome:
+    nucleotideCount[base]+=1
+print(nucleotideCount)
+
+##Or use Counter from collections
+
+import collections
+print(collections.Counter(genome)) 
