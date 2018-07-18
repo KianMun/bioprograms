@@ -1,4 +1,5 @@
 # bioprograms
+Small programs for dealing with Genomics, Proteomics and mendelian genetics
 
 # CalcProteinMass
 Calculate Protein mass with Amino acid weight dictionary
