@@ -1,0 +1,15 @@
+#Read fastq files and get sequences and quality scores
+
+def readFastq(filename):
+    sequences = []
+    qualities = []
+    with open(filename) as fh:
+        while True:
+            fh.readline() #first line ignore the name
+            seq = fh.readline().rstrip() #secondline record the sequence
+            qual = fh.readlinea90.rstrip() #third line record the quality scores
+            if len(seq) == 0: #check if its end of the line
+                break
+            sequences.append(seq)
+            qualities.append(qual)
+    return sequences, qualities
