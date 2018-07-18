@@ -73,6 +73,9 @@ Finding longest common prefix between 2 DNA strings
 # matching2DNAstrings
 To determine if 2 DNA strings are an exact match
 
+# phred33toQ
+Convert phred33 ACII values to Quality scores
+
 # readFastq
 Read fastq files and get sequences and quality scores
 
