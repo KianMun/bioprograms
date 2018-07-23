@@ -1,0 +1,16 @@
+#Find GC content by position, GC content should be approx. 50%
+
+def findGCbypos(reads):
+    gc =[0] * 100
+    totals = [0] * 100
+
+    for read in reads:
+        for i in range(len(read)):
+            if read[i] == 'G' or read[i] == 'C':
+                gc[i] += 1
+            totals += 1
+    for i in range(len(gc)):
+        if totals[i] >0:
+            gc[i] /= float(totals[i])
+
+    return gc
