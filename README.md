@@ -76,6 +76,12 @@ Finding longest common prefix between 2 DNA strings
 # matching2DNAstrings
 To determine if 2 DNA strings are an exact match
 
+# naive_matching
+Naive matching (iterative) of pattern on sequence string, contains 3 different variations. 3 variation as described:
+EXACT Naive Matching
+EXACT Naive Matching with Reverse complement of Pattern being considered
+Naive matching with Mismatch, in the below example is 2 mismatches
+
 # phred33toQ
 Convert phred33 ACII values to Quality scores
 
