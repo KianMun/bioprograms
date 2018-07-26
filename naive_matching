@@ -1,0 +1,57 @@
+# Naive matching (iterative) of pattern on sequence string
+
+#EXACT Naive Matching
+
+def naive(p, s): #p = pattern, s = DNA string
+    occurrences = []
+    for i in range(len(s) - len(p) + 1):  # loop over alignments
+        match = True
+        for j in range(len(p)):  # loop over characters
+            if s[i+j] != p[j]:  # compare characters
+                match = False
+                break
+        if match:
+            occurrences.append(i)  # all chars matched; record
+    return occurrences
+
+#EXACT Naive Matching with Reverse complement of Pattern being considered
+
+def naive_with_rc(p,s):
+    occurences = []
+    for i in range(len(s) - len(p) + 1):  # loop over alignments
+        match = True
+        for j in range(len(p)):  # loop over characters
+            if s[i + j] != p[j]:  # compare characters
+                match = False
+                break
+        if match:
+            occurences.append(i)  # all chars matched; record
+
+    rc_occurences = []
+    rc = reverseComplement(p)
+
+    for i in range(len(s) - len(rc) + 1):  # loop over alignments
+        match = True
+        for j in range(len(rc)):  # loop over characters
+            if s[i + j] != rc[j]:  # compare characters
+                match = False
+                break
+        if match:
+            rc_occurences.append(i)  # all chars matched; record
+
+    return occurences, rc_occurences
+    
+#Naive matching with Mismatch, in the below example is 2 mismatches
+
+def naive_2mm(p, s):
+    occurrences = []
+    for i in range(len(s) - len(p) + 1):  # loop over alignments
+        mismatch = 0 #Initialize the mismatch count
+        for j in range(len(p)):  # loop over characters
+            if s[i+j] != p[j]:  # compare characters
+                mismatch += 1 #Adds 1 when mismatch occur
+                if mismatch ==3: #when more than accepted mismatch of 2, break
+                    break
+        if mismatch <=2: #if mismatch less than 2, append results
+            occurrences.append(i)  # all chars matched; record
+    return occurrences
