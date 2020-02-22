@@ -25,14 +25,10 @@
 # Since any pair of rabbits alive in the previous generation are still alive this generation, we get the
 # recurrence Fn=Fn−1+k*Fn−2.
 
-def fibonaciNumbers(n,k):
-    if n > 2:
-        fibnum = [0,1]
-        for i in range(2, n+1):
-            fibnum.append(fibnum[-1] + fibnum[-2]*k)
-    else:
-        return 1
-    return fibnum
-
-fn = fibonaciNumbers(35,2)
-print(fn)
+def fib(n: int) -> int:
+    if n == 0: return n
+    last: int = 0
+    next: int = 1
+    for i in range(1,n):
+        last, next = next, last + next
+    return next
